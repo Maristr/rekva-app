@@ -24,13 +24,3 @@ html {
     background: url("../images/v_snipped - kopie.png") center no-repeat;
     background-size: contain;
 }
-
-
-/*.backgrounImage {
-  background-color: transparent;
-  min-height: 60vh;
-  background: url("../images/v_snipped.png") center no-repeat ;
-  background-size: contain;
-  opacity:0.5;
-  z-index:-1;
-}*/
