@@ -1,0 +1,61 @@
+﻿@model Test02.Models.PojistnaUdalost
+
+@{
+    ViewData["Title"] = "Náhled na Pojistné Události";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="text-center">
+    Detail pojistné události zákazníka - @Html.DisplayFor(model => model.Zakaznik.Jmeno) @Html.DisplayFor(model => model.Zakaznik.Prijmeni) <br />
+    @Html.DisplayFor(model => model.Pojisteni.PojisteniTyp) / @Html.DisplayFor(model => model.Pojisteni.PredmetPojisteni)
+</h3>
+
+<hr />
+<div class="row justify-content-center">
+    <div class="col-sm-10">
+        <dl class="row border-bottom mb-0">
+@*            <dt class = "col-sm-6 text-sm-end">
+                @Html.DisplayNameFor(model => model.Zakaznik)
+            </dt>
+            <dd class = "col-sm-6">
+                @Html.DisplayFor(model => model.Zakaznik.Jmeno)
+                @Html.DisplayFor(model => model.Zakaznik.Prijmeni)
+            </dd>
+            <dt class = "col-sm-6 text-sm-end">
+                @Html.DisplayNameFor(model => model.Pojisteni.PojisteniTyp)
+            </dt>
+            <dd class = "col-sm-6">
+                @Html.DisplayFor(model => model.Pojisteni.PojisteniTyp)
+            </dd>
+            <dt class="col-sm-6 text-sm-end">
+                @Html.DisplayNameFor(model => model.Pojisteni.PredmetPojisteni)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Pojisteni.PredmetPojisteni)
+            </dd>*@
+            <dt class="col-sm-6 text-sm-end">
+                @Html.DisplayNameFor(model => model.PopisUdalosti)
+            </dt>
+            <dd class = "col-sm-6">
+                @Html.DisplayFor(model => model.PopisUdalosti)
+            </dd>
+            <dt class="col-sm-6 text-sm-end">
+                @Html.DisplayNameFor(model => model.VznikUdalosti)
+            </dt>
+            <dd class = "col-sm-6">
+                @Html.DisplayFor(model => model.VznikUdalosti)
+            </dd>
+            <dt class="col-sm-6 text-sm-end">
+                @Html.DisplayNameFor(model => model.VyrizeniStav)
+            </dt>
+            <dd class = "col-sm-6">
+                @Html.DisplayFor(model => model.VyrizeniStav)
+            </dd>
+        </dl>
+    </div>
+</div>
+<div class="text-center mt-3">
+    <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@Model?.Id">Upravit</a> |
+    <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@Model?.Id">Smazat</a> |
+    <a class="btn btn-outline-secondary" asp-action="Index" asp-route-id="@Model?.PojisteniId">Zpět</a>
+</div>

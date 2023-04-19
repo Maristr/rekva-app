@@ -1,0 +1,60 @@
+﻿@model Test02.Models.Zakaznik
+@using System.ComponentModel.DataAnnotations
+
+@{
+    ViewData["Title"] = "Upravit Zákazníka";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="text-center">
+    Upravit informace zákazníka - @Model.Jmeno @Model.Prijmeni
+</h3>
+
+<hr />
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Jmeno" class="form-label fw-bold mt-2"></label>
+                <input asp-for="Jmeno" class="form-control" />
+                <span asp-validation-for="Jmeno" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Prijmeni" class="form-label fw-bold mt-2"></label>
+                <input asp-for="Prijmeni" class="form-control" />
+                <span asp-validation-for="Prijmeni" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Datum" class="form-label fw-bold mt-2"></label>
+                <input asp-for="Datum" class="form-control" />
+                <span asp-validation-for="Datum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="form-label fw-bold mt-2"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telefon" class="form-label fw-bold mt-2"></label>
+                <input asp-for="Telefon" class="form-control" />
+                <span asp-validation-for="Telefon" class="text-danger"></span>
+            </div>
+            <div class="form-group visually-hidden">
+                <label asp-for="AspNetUserId" class="form-label fw-bold mt-2"></label>
+                <input type="hidden" asp-for="AspNetUserId" class="form-control" />
+            </div>
+            <hr />
+            <div class="form-group mt-3 text-center">
+                <input type="submit" value="Potvrdit" class="btn btn-outline-warning" /> |
+                <a class="btn btn-outline-secondary" asp-action="Index">Zrušit</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

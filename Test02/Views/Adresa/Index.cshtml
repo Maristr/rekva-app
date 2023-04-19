@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Test02.Models.Adresa>
+
+@{
+    ViewData["Title"] = "Seznam Adres";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="text-center">
+    Seznam adres zákazníka - @ViewBag.ZakaznikCeleJmeno
+</h3>
+<hr />
+<p class="text-center">
+    <a class="btn btn-primary" asp-action="Create" asp-route-ZakaznikId="@ViewBag.ZakaznikId">Nová Adresa</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+@*            <th>
+                @Html.DisplayNameFor(model => model.Zakaznik)
+            </th>*@
+            <th>
+                Adresa
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdresaTyp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DorucovaciAdresa)
+            </th>
+@*            <th>
+            </th>*@
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+@*            <td>
+                @Html.DisplayFor(modelItem => item.Zakaznik.Jmeno)
+                @Html.DisplayFor(modelItem => item.Zakaznik.Prijmeni)
+            </td>*@
+            <td>
+                <a class="link" asp-action="Details" asp-route-id="@item.Id">
+                @Html.DisplayFor(modelItem => item.Ulice)
+                @Html.DisplayFor(modelItem => item.CisloPopisne),
+                @Html.DisplayFor(modelItem => item.PSC)
+                @Html.DisplayFor(modelItem => item.Obec)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdresaTyp)
+            </td>
+            <td>
+                @if (item.DorucovaciAdresa)
+                {
+                    <a>Ano</a>
+                }
+                else 
+                {
+                    <a>Ne</a>
+                }
+            </td>
+@*            <td>
+                <a class="btn btn-sm btn-outline-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>*@
+        </tr>
+}
+    </tbody>
+</table>

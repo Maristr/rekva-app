@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Test02.Models.PojistnaUdalost>
+
+@{
+    ViewData["Title"] = "Seznam Pojistných Událostí";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="text-center">
+    Seznam pojistných událostí zákazníka - @ViewBag.ZakaznikCeleJmeno <br />
+    @ViewBag.PojisteniCelyNazev
+</h3>
+<hr />
+<p class="text-center">
+    <a class="btn btn-primary" asp-action="Create" asp-route-pojisteniId="@ViewBag.PojisteniId">Nová Pojistná Událost</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PopisUdalosti)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VznikUdalosti)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VyrizeniStav)
+            </th>
+@*            <th></th>*@
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a class="link" asp-action="Details" asp-route-id="@item.Id">
+                @Html.DisplayFor(modelItem => item.PopisUdalosti)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VznikUdalosti)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VyrizeniStav)
+            </td>
+@*            <td>
+                <a class="btn btn-sm btn-outline-warning" asp-action="Edit" asp-route-id="@item.Id">Upravit</a> |
+                <a class="btn btn-sm btn-outline-info" asp-action="Details" asp-route-id="@item.Id">Náhled</a> |
+                <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Smazat</a>
+            </td>*@
+        </tr>
+}
+    </tbody>
+</table>

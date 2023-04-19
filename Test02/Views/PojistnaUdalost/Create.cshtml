@@ -1,0 +1,66 @@
+﻿@model Test02.Models.PojistnaUdalost
+@using System.ComponentModel.DataAnnotations
+
+@{
+    ViewData["Title"] = "Vytvořit Pojistnou Událost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="text-center">
+    Nová pojistní událost zákazníka - @ViewBag.ZakaznikCeleJmeno <br />
+    @ViewBag.PojisteniCelyNazev
+</h3>
+
+<hr />
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group visually-hidden">
+                <label asp-for="ZakaznikId" class="form-label fw-bold mt-2"></label>
+                <input asp-for="ZakaznikId" class="form-control" />
+            </div>
+            <div class="form-group visually-hidden">
+                <label asp-for="PojisteniId" class="form-label fw-bold mt-2"></label>
+                <input asp-for="PojisteniId" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="PopisUdalosti" class="form-label fw-bold mt-2"></label>
+                <input asp-for="PopisUdalosti" class="form-control" />
+                <span asp-validation-for="PopisUdalosti" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VznikUdalosti" class="form-label fw-bold mt-2"></label>
+                <input asp-for="VznikUdalosti" class="form-control" />
+                <span asp-validation-for="VznikUdalosti" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VyrizeniStav" class="form-label fw-bold mt-2"></label>
+                @foreach (var item in Enum.GetValues(typeof(StavVyrizeni)))
+                {
+                    var name = item.GetType().GetMember(item.ToString())[0]
+                    .GetCustomAttributes(typeof(DisplayAttribute), false)
+                    .SingleOrDefault() as DisplayAttribute;
+
+                    <div class="form-check">
+                        <input type="radio" asp-for="VyrizeniStav" class="form-check-input"
+                           value="@item" id="@item.ToString()" />
+                        <label class="form-check-label" for="@item.ToString()">
+                            @name?.Name
+                        </label>
+                    </div>
+                }
+                <span asp-validation-for="VyrizeniStav" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group mt-3 text-center">
+                <input type="submit" value="Potvrdit" class="btn btn-outline-success" /> |
+                <a class="btn btn-outline-secondary" asp-action="Index" asp-route-id="@ViewBag.PojisteniId">Zrušit</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,63 @@
+﻿@model Test02.Models.PojistnaUdalost
+
+@{
+    ViewData["Title"] = "Smazat Pojistnou Událost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="text-center">
+    Smazat pojistnou událost zákazníka -  @ViewBag.ZakaznikCeleJmeno <br />
+    @ViewBag.PojisteniCelyNazev
+</h3>
+<h5 class="text-danger text-center">
+    Ujistěte se, že tuto akci provádíte při plném vědomí - akce je nevratná!!!
+</h5>
+<hr />
+<div class="row justify-content-center">
+    <div class="col-sm-10">
+        <dl class="row border-bottom mb-0">
+@*            <dt class = "col-sm-6 text-sm-end">
+                @Html.DisplayNameFor(model => model.Zakaznik)
+            </dt>
+            <dd class = "col-sm-6">
+                @Html.DisplayFor(model => model.Zakaznik.Jmeno)
+                @Html.DisplayFor(model => model.Zakaznik.Prijmeni)
+            </dd>
+            <dt class = "col-sm-6 text-sm-end">
+                @Html.DisplayNameFor(model => model.Pojisteni.PojisteniTyp)
+            </dt>
+            <dd class = "col-sm-6">
+                @Html.DisplayFor(model => model.Pojisteni.PojisteniTyp)
+            </dd>
+            <dt class="col-sm-6 text-sm-end">
+                @Html.DisplayNameFor(model => model.Pojisteni.PredmetPojisteni)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Pojisteni.PredmetPojisteni)
+            </dd>*@
+            <dt class="col-sm-6 text-sm-end">
+                @Html.DisplayNameFor(model => model.PopisUdalosti)
+            </dt>
+            <dd class = "col-sm-6">
+                @Html.DisplayFor(model => model.PopisUdalosti)
+            </dd>
+            <dt class="col-sm-6 text-sm-end">
+                @Html.DisplayNameFor(model => model.VznikUdalosti)
+            </dt>
+            <dd class = "col-sm-6">
+                @Html.DisplayFor(model => model.VznikUdalosti)
+            </dd>
+            <dt class="col-sm-6 text-sm-end">
+                @Html.DisplayNameFor(model => model.VyrizeniStav)
+            </dt>
+            <dd class = "col-sm-6">
+                @Html.DisplayFor(model => model.VyrizeniStav)
+            </dd>
+        </dl>
+        <form asp-action="Delete" class="mt-3 text-center">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Potvrdit" class="btn btn-outline-danger" /> |
+            <a class="btn btn-outline-secondary" asp-action="Index" asp-route-id="@Model?.PojisteniId">Zrušit</a>
+        </form>
+    </div>
+</div>

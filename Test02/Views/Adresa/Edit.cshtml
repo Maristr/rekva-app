@@ -1,0 +1,79 @@
+﻿@model Test02.Models.Adresa
+@using System.ComponentModel.DataAnnotations
+
+@{
+    ViewData["Title"] = "Upravit Adresu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="text-center">
+    Upravit adresu zákazníka - @ViewBag.ZakaznikCeleJmeno
+</h3>
+
+<hr />
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group visually-hidden">
+                <label asp-for="ZakaznikId" class="form-label fw-bold mt-2"></label>
+                <input asp-for="ZakaznikId" class="form-control" asp-items="@Model.ZakaznikId" />
+                <span asp-validation-for="ZakaznikId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ulice" class="form-label fw-bold mt-2"></label>
+                <input asp-for="Ulice" class="form-control" />
+                <span asp-validation-for="Ulice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CisloPopisne" class="form-label fw-bold mt-2"></label>
+                <input asp-for="CisloPopisne" class="form-control" />
+                <span asp-validation-for="CisloPopisne" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Obec" class="form-label fw-bold mt-2"></label>
+                <input asp-for="Obec" class="form-control" />
+                <span asp-validation-for="Obec" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PSC" class="form-label fw-bold mt-2"></label>
+                <input asp-for="PSC" class="form-control" />
+                <span asp-validation-for="PSC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdresaTyp" class="form-label fw-bold mt-2"></label>
+                @foreach (var item in Enum.GetValues(typeof(TypAdresy)))
+                {
+                    var name = item.GetType().GetMember(item.ToString())[0]
+                    .GetCustomAttributes(typeof(DisplayAttribute), false)
+                    .SingleOrDefault() as DisplayAttribute;
+
+                    <div class="form-check">
+                        <input type="radio" id="@item.ToString()" name="AdresaTyp" value="@item"
+                               checked="@item.Equals(Model.AdresaTyp)" class="form-check-input" />
+                        <label class="form-check-label" for="@item.ToString()">
+                            @name?.Name
+                        </label>
+                    </div>
+                }
+                <span asp-validation-for="AdresaTyp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DorucovaciAdresa" class="form-label fw-bold mt-2"></label>
+                <input asp-for="DorucovaciAdresa" class="form-check-input align-middle mx-1 mb-2" type="checkbox" />
+                <span asp-validation-for="DorucovaciAdresa" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group mt-3 text-center">
+                <input type="submit" value="Potvrdit" class="btn btn-outline-warning" /> |
+                <a class="btn btn-outline-secondary" asp-action="Index" asp-route-id="@Model?.ZakaznikId">Zrušit</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

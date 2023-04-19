@@ -1,0 +1,56 @@
+﻿@model Test02.Models.Zakaznik
+
+@{
+    ViewData["Title"] = "Smazat Zákazníka";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3 class="text-center">
+    Smazat zákazníka - @Model.Jmeno @Model.Prijmeni
+</h3>
+<h5 class="text-danger text-center">
+    Ujistěte se, že tuto akci provádíte při plném vědomí - akce je nevratná!!!
+</h5>
+<hr />
+<div class="row justify-content-center">
+    <div class="col-sm-10">
+        <dl class="row border-bottom mb-0">
+            <dt class = "col-sm-6 text-sm-end">
+                @Html.DisplayNameFor(model => model.Jmeno)
+            </dt>
+            <dd class = "col-sm-6">
+                @Html.DisplayFor(model => model.Jmeno)
+            </dd>
+            <dt class="col-sm-6 text-sm-end">
+                @Html.DisplayNameFor(model => model.Prijmeni)
+            </dt>
+            <dd class = "col-sm-6">
+                @Html.DisplayFor(model => model.Prijmeni)
+            </dd>
+            <dt class="col-sm-6 text-sm-end">
+                @Html.DisplayNameFor(model => model.Datum)
+            </dt>
+            <dd class = "col-sm-6">
+                @Html.DisplayFor(model => model.Datum)
+            </dd>
+            <dt class="col-sm-6 text-sm-end">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class = "col-sm-6">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt class="col-sm-6 text-sm-end">
+                @Html.DisplayNameFor(model => model.Telefon)
+            </dt>
+            <dd class = "col-sm-6">
+                @Html.DisplayFor(model => model.Telefon)
+            </dd>
+        </dl>
+    
+        <form asp-action="Delete" class="mt-3 text-center">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Potvrdit" class="btn btn-outline-danger" /> |
+            <a class="btn btn-outline-secondary" asp-action="Index">Zrušit</a>
+        </form>
+    </div>
+</div>
